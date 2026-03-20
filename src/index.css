@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary - Rich Stone (UI/UX Pro Max recommended) */
+  --color-primary: #1C1917;
+  --color-primary-dark: #0C0A09;
+  --color-primary-light: #44403C;
+
+  /* Secondary - CTA Gold */
+  --color-secondary: #CA8A04;
+  --color-secondary-light: #D4AA5E;
+  --color-secondary-dark: #A16207;
+
+  /* Accent - Ethiopian Green */
+  --color-accent: #1B5E3B;
+  --color-accent-light: #2D7A50;
+
+  /* Ethiopian Red (cultural accent) */
+  --color-ethiopian-red: #8B1A1A;
+
+  /* Neutrals */
+  --color-dark: #0C0A09;
+  --color-espresso: #1C1917;
+  --color-cream: #FAFAF9;
+  --color-ivory: #FEFBF3;
+  --color-warm-gray: #F5F5F4;
+  --color-warm-gray-dark: #E7E5E4;
+
+  /* Text */
+  --color-text: #0C0A09;
+  --color-text-muted: #57534E;
+  --color-text-light: #A8A29E;
+
+  /* Typography - Cormorant / Montserrat (luxury fashion) */
+  --font-heading: 'Cormorant', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background-color: var(--color-secondary);
+    color: var(--color-dark);
+  }
+
+  /* Focus states for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-8 py-3.5 rounded-none font-medium tracking-[0.15em]
+           hover:bg-primary-light transition-all duration-200 ease-out uppercase text-[11px] cursor-pointer
+           hover:shadow-lg active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-secondary;
+  }
+
+  .btn-secondary {
+    @apply border border-secondary text-secondary px-8 py-3.5 rounded-none font-medium tracking-[0.15em]
+           hover:bg-secondary hover:text-dark transition-all duration-200 ease-out uppercase text-[11px] cursor-pointer
+           active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-secondary;
+  }
+
+  .btn-dark {
+    @apply bg-dark text-white px-8 py-3.5 rounded-none font-medium tracking-[0.15em]
+           hover:bg-primary-light transition-all duration-200 ease-out uppercase text-[11px] cursor-pointer
+           hover:shadow-lg active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-secondary;
+  }
+
+  .btn-gold {
+    @apply bg-secondary text-dark px-8 py-3.5 rounded-none font-semibold tracking-[0.15em]
+           hover:bg-secondary-light transition-all duration-200 ease-out uppercase text-[11px] cursor-pointer
+           hover:shadow-lg active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-secondary;
+  }
+
+  .section-padding {
+    @apply px-4 py-20 md:px-8 lg:px-16 xl:px-24;
+  }
+
+  .ethiopian-border {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-accent) 0px,
+      var(--color-accent) 8px,
+      var(--color-secondary) 8px,
+      var(--color-secondary) 16px,
+      var(--color-ethiopian-red) 16px,
+      var(--color-ethiopian-red) 24px
+    );
+    height: 3px;
+  }
+
+  .ethiopian-border-thick {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-accent) 0px,
+      var(--color-accent) 12px,
+      var(--color-secondary) 12px,
+      var(--color-secondary) 24px,
+      var(--color-ethiopian-red) 24px,
+      var(--color-ethiopian-red) 36px
+    );
+    height: 6px;
+  }
+
+  .product-card {
+    @apply bg-white overflow-hidden
+           transition-all duration-300 ease-out hover:-translate-y-1;
+  }
+
+  /* Liquid Glass effect (UI/UX Pro Max recommended) */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-dark {
+    background: rgba(12, 10, 9, 0.7);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-secondary-dark), var(--color-secondary), var(--color-secondary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-warm-gray-dark bg-white text-sm
+           focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-200
+           placeholder:text-text-light;
+  }
+}
+
+/* Ethiopian cross-stitch inspired pattern */
+.ethiopian-pattern {
+  background-image:
+    linear-gradient(45deg, var(--color-ethiopian-red) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--color-secondary) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--color-accent) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--color-ethiopian-red) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  opacity: 0.08;
+}
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--color-warm-gray) 25%, var(--color-cream) 50%, var(--color-warm-gray) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Liquid glass glow effect */
+@keyframes glassGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(202, 138, 4, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(202, 138, 4, 0.2); }
+}
+
+.glass-glow {
+  animation: glassGlow 3s ease-in-out infinite;
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shimmer {
+    animation: none;
+  }
+
+  .glass-glow {
+    animation: none;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary-dark);
+}
