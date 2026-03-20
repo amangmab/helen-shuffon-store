@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, ChevronDown, LayoutGrid, Grid3X3 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { products, categories } from '../data/products';
+import { asset } from '../utils/paths';
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,7 +45,7 @@ export default function Shop() {
       <section className="relative py-28 bg-dark overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/hero/hero-shop.png"
+            src={asset('/images/hero/hero-shop.png')}
             alt=""
             className="w-full h-full object-cover object-top opacity-35"
           />

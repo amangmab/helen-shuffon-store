@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Heart, Sparkles, Users, Globe } from 'lucide-react';
+import { asset } from '../utils/paths';
 
 export default function About() {
   return (
@@ -8,7 +9,7 @@ export default function About() {
       <section className="relative py-32 bg-dark overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/hero/hero-about.png"
+            src={asset('/images/hero/hero-about.png')}
             alt=""
             className="w-full h-full object-cover object-top opacity-30"
           />
@@ -57,7 +58,7 @@ export default function About() {
           </div>
           <div className="relative aspect-square overflow-hidden group">
             <img
-              src="/images/hero/hero-about.png"
+              src={asset('/images/hero/hero-about.png')}
               alt="Helen Shuffon - Ethiopian Traditional Weaving"
               className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />

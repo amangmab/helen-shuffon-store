@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X, Search, ChevronDown } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { categories } from '../data/products';
+import { asset } from '../utils/paths';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +45,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img
-                src="/images/logo/logo-final-transparent.png"
+                src={asset('/images/logo/logo-final-transparent.png')}
                 alt="Helen Shuffon"
                 className="h-12 w-auto"
               />
@@ -153,7 +154,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between mb-10">
               <div className="flex items-center gap-3">
                 <img
-                  src="/images/logo/logo-final-transparent.png"
+                  src={asset('/images/logo/logo-final-transparent.png')}
                   alt="Helen Shuffon"
                   className="h-12 w-auto"
                 />

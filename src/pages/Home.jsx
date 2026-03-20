@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, Shield, Award, RefreshCw, Star } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { products, categories, testimonials } from '../data/products';
+import { asset } from '../utils/paths';
 
 export default function Home() {
   const featured = products.filter(p =>
@@ -17,7 +18,7 @@ export default function Home() {
         {/* Hero image on right side */}
         <div className="hidden lg:block absolute right-0 top-0 h-full w-[55%]">
           <img
-            src="/images/hero/hero-main.png"
+            src={asset('/images/hero/hero-main.png')}
             alt=""
             className="h-full w-full object-cover object-top"
           />
@@ -28,7 +29,7 @@ export default function Home() {
         {/* Mobile: subtle background */}
         <div className="lg:hidden absolute inset-0">
           <img
-            src="/images/hero/hero-main.png"
+            src={asset('/images/hero/hero-main.png')}
             alt=""
             className="h-full w-full object-cover object-top opacity-30"
           />
@@ -148,7 +149,7 @@ export default function Home() {
       {/* Heritage Banner */}
       <section className="relative py-28 bg-dark overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/hero/tibeb-pattern.png" alt="" className="w-full h-full object-cover opacity-20" />
+          <img src={asset('/images/hero/tibeb-pattern.png')} alt="" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/70 to-dark" />
         </div>
         <div className="absolute inset-0 ethiopian-pattern" />

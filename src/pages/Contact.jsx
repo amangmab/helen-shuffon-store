@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Facebook, Instagram, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { asset } from '../utils/paths';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -27,7 +28,7 @@ export default function Contact() {
       <section className="relative py-28 bg-dark overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/hero/tibeb-pattern.png"
+            src={asset('/images/hero/tibeb-pattern.png')}
             alt=""
             className="w-full h-full object-cover opacity-20"
           />

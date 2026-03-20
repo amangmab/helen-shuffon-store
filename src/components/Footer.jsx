@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { asset } from '../utils/paths';
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
               <img
-                src="/images/logo/logo-final-transparent.png"
+                src={asset('/images/logo/logo-final-transparent.png')}
                 alt="Helen Shuffon"
                 className="h-14 w-auto"
               />
