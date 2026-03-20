@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Facebook, Instagram, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { asset } from '../utils/paths';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -35,7 +36,7 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-dark/80" />
         </div>
         <div className="absolute inset-0 ethiopian-pattern" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-4">
+        <div className="relative z-10 max-w-3xl mx-auto text-center px-4 hero-animate">
           <p className="text-secondary uppercase tracking-[0.35em] text-xs font-medium mb-5">Get in Touch</p>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
             We'd Love to Hear from You

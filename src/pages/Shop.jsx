@@ -4,6 +4,7 @@ import { SlidersHorizontal, ChevronDown, LayoutGrid, Grid3X3 } from 'lucide-reac
 import ProductCard from '../components/ProductCard';
 import { products, categories } from '../data/products';
 import { asset } from '../utils/paths';
+import { useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -52,7 +53,7 @@ export default function Shop() {
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-dark/80" />
         </div>
         <div className="absolute inset-0 ethiopian-pattern" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center hero-animate">
           <p className="text-secondary uppercase tracking-[0.35em] text-xs font-medium mb-4">Collection</p>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-3">
             {activeCategoryName}
@@ -122,8 +123,14 @@ export default function Shop() {
           <div className={`grid grid-cols-2 ${
             gridCols === 2 ? 'md:grid-cols-2 lg:grid-cols-2' : 'md:grid-cols-3 lg:grid-cols-3'
           } gap-4 md:gap-5`}>
-            {filtered.map(product => (
-              <ProductCard key={product.id} product={product} />
+            {filtered.map((product, i) => (
+              <div
+                key={product.id}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${i * 80}ms`, opacity: 0 }}
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         ) : (

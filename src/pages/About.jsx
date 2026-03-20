@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Heart, Sparkles, Users, Globe } from 'lucide-react';
 import { asset } from '../utils/paths';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function About() {
+  const storyTextRef = useScrollReveal();
+  const storyImageRef = useScrollReveal();
+  const processHeaderRef = useScrollReveal();
+  const processGridRef = useStaggerReveal({ stagger: 150 });
+  const valuesHeaderRef = useScrollReveal();
+  const valuesGridRef = useStaggerReveal({ stagger: 100 });
+  const ctaRef = useScrollReveal();
+
   return (
     <main>
       {/* Hero */}
@@ -16,7 +25,7 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-dark/70" />
         </div>
         <div className="absolute inset-0 ethiopian-pattern" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-4">
+        <div className="relative z-10 max-w-3xl mx-auto text-center px-4 hero-animate">
           <p className="text-secondary uppercase tracking-[0.35em] text-xs font-medium mb-5">Our Story</p>
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Weaving Heritage, <br />
@@ -32,7 +41,7 @@ export default function About() {
       {/* Story */}
       <section className="section-padding max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <div ref={storyTextRef} className="reveal-fade-left">
             <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">The Beginning</p>
             <h2 className="font-heading text-3xl font-semibold text-dark mb-6">A Passion Born from Tradition</h2>
             <div className="space-y-4 text-text-muted text-sm leading-relaxed">
@@ -56,7 +65,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="relative aspect-square overflow-hidden group">
+          <div ref={storyImageRef} className="relative aspect-square overflow-hidden group reveal-fade-right">
             <img
               src={asset('/images/hero/hero-about.png')}
               alt="Helen Shuffon - Ethiopian Traditional Weaving"
@@ -74,12 +83,12 @@ export default function About() {
       {/* Process */}
       <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <div ref={processHeaderRef} className="text-center mb-14 reveal-fade-up">
             <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">The Craft</p>
             <h2 className="font-heading text-3xl font-semibold text-dark">How Our Dresses Are Made</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div ref={processGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 step: '01',
@@ -97,7 +106,7 @@ export default function About() {
                 description: 'Expert embroiderers add intricate cross-stitch and satin-stitch details, bringing each garment to life with cultural patterns and symbols.',
               },
             ].map(({ step, title, description }) => (
-              <div key={step} className="relative p-8 border border-warm-gray hover:border-secondary/30 transition-colors">
+              <div key={step} data-reveal className="relative p-8 border border-warm-gray hover:border-secondary/30 transition-colors">
                 <span className="text-6xl font-heading font-bold text-secondary/10 absolute top-4 right-6">{step}</span>
                 <div className="relative">
                   <h3 className="font-heading text-xl font-semibold text-dark mb-3">{title}</h3>
@@ -111,12 +120,12 @@ export default function About() {
 
       {/* Values */}
       <section className="section-padding max-w-6xl mx-auto">
-        <div className="text-center mb-14">
+        <div ref={valuesHeaderRef} className="text-center mb-14 reveal-fade-up">
           <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">Our Values</p>
           <h2 className="font-heading text-3xl font-semibold text-dark">What We Stand For</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={valuesGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             {
               icon: Heart,
@@ -139,7 +148,7 @@ export default function About() {
               description: 'Bringing Ethiopian fashion worldwide — shipping to North America, Europe, Africa, and beyond.',
             },
           ].map(({ icon: Icon, title, description }) => (
-            <div key={title} className="text-center p-6">
+            <div key={title} data-reveal className="text-center p-6">
               <div className="w-14 h-14 mx-auto mb-4 border border-secondary/30 flex items-center justify-center">
                 <Icon size={22} className="text-secondary" />
               </div>
@@ -153,7 +162,7 @@ export default function About() {
       {/* CTA */}
       <section className="relative py-24 bg-gradient-to-r from-dark to-espresso overflow-hidden">
         <div className="absolute inset-0 ethiopian-pattern" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-4">
+        <div ref={ctaRef} className="relative z-10 max-w-3xl mx-auto text-center px-4 reveal-fade-up">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Explore Our Collection?
           </h2>

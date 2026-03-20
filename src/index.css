@@ -203,6 +203,107 @@
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
+/* ========== Scroll Reveal Animations ========== */
+
+/* Base: elements start hidden */
+.reveal-fade-up,
+.reveal-fade-down,
+.reveal-fade-left,
+.reveal-fade-right,
+.reveal-scale,
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up { transform: translateY(40px); }
+.reveal-fade-down { transform: translateY(-40px); }
+.reveal-fade-left { transform: translateX(-40px); }
+.reveal-fade-right { transform: translateX(40px); }
+.reveal-scale { transform: scale(0.92); }
+.reveal-fade { transform: none; }
+
+/* Revealed state */
+.reveal-fade-up.revealed,
+.reveal-fade-down.revealed,
+.reveal-fade-left.revealed,
+.reveal-fade-right.revealed,
+.reveal-scale.revealed,
+.reveal-fade.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Staggered children */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero text entrance animation */
+@keyframes heroSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.hero-animate > * {
+  opacity: 0;
+  animation: heroSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-animate > *:nth-child(2) { animation-delay: 0.3s; }
+.hero-animate > *:nth-child(3) { animation-delay: 0.5s; }
+.hero-animate > *:nth-child(4) { animation-delay: 0.7s; }
+.hero-animate > *:nth-child(5) { animation-delay: 0.9s; }
+
+/* Floating animation for scroll indicator */
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Count-up number animation */
+@keyframes countPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Subtle parallax shimmer on gold gradient text */
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-gold {
+  background-size: 200% auto;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
 /* Liquid glass glow effect */
 @keyframes glassGlow {
   0%, 100% { box-shadow: 0 0 20px rgba(202, 138, 4, 0.1); }

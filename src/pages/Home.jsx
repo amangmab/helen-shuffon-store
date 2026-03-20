@@ -3,11 +3,24 @@ import { ArrowRight, Truck, Shield, Award, RefreshCw, Star } from 'lucide-react'
 import ProductCard from '../components/ProductCard';
 import { products, categories, testimonials } from '../data/products';
 import { asset } from '../utils/paths';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function Home() {
   const featured = products.filter(p =>
     p.badge === 'Best Seller' || p.badge === 'New Arrival' || p.badge === 'Trending' || p.badge === 'Premium'
   ).slice(0, 4);
+
+  // Scroll reveal refs
+  const trustRef = useStaggerReveal({ stagger: 80 });
+  const collectionsHeaderRef = useScrollReveal();
+  const collectionsGridRef = useStaggerReveal({ stagger: 120 });
+  const featuredHeaderRef = useScrollReveal();
+  const featuredGridRef = useStaggerReveal({ stagger: 120 });
+  const heritageRef = useScrollReveal();
+  const testimonialsHeaderRef = useScrollReveal();
+  const testimonialsGridRef = useStaggerReveal({ stagger: 150 });
+  const socialRef = useScrollReveal();
+  const newsletterRef = useScrollReveal();
 
   return (
     <main>
@@ -37,7 +50,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-xl">
+          <div className="max-w-xl hero-animate">
             <p className="text-secondary uppercase tracking-[0.35em] text-xs font-medium mb-6">
               Ethiopian Traditional Fashion
             </p>
@@ -62,7 +75,7 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+        <div className="absolute bottom-8 left-1/2 animate-float flex flex-col items-center gap-2 text-white/30">
           <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
           <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
@@ -70,14 +83,14 @@ export default function Home() {
 
       {/* Trust Bar */}
       <section className="bg-white py-5 border-b border-warm-gray">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div ref={trustRef} className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { icon: Truck, label: 'Worldwide Shipping', sub: 'To your doorstep' },
             { icon: Shield, label: 'Secure Payment', sub: '100% protected' },
             { icon: Award, label: 'Authentic Crafts', sub: 'Handmade in Ethiopia' },
             { icon: RefreshCw, label: 'Easy Returns', sub: '30-day guarantee' },
           ].map(({ icon: Icon, label, sub }) => (
-            <div key={label} className="flex items-center gap-3 justify-center py-2">
+            <div key={label} data-reveal className="flex items-center gap-3 justify-center py-2">
               <Icon size={20} className="text-secondary flex-shrink-0" />
               <div>
                 <p className="text-xs font-semibold text-dark uppercase tracking-wide">{label}</p>
@@ -90,16 +103,17 @@ export default function Home() {
 
       {/* Collections */}
       <section className="section-padding max-w-7xl mx-auto">
-        <div className="text-center mb-14">
+        <div ref={collectionsHeaderRef} className="text-center mb-14 reveal-fade-up">
           <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">Explore</p>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-dark">Our Collections</h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div ref={collectionsGridRef} className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {categories.filter(c => c.id !== 'all').map((cat, i) => (
             <Link
               key={cat.id}
               to={`/shop?category=${cat.id}`}
+              data-reveal
               className={`relative group overflow-hidden ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
             >
               <div className={`${i === 0 ? 'h-64 md:h-full min-h-[320px]' : 'h-48 md:h-56'} relative flex items-end p-5 md:p-6 transition-all duration-700 group-hover:scale-[1.02]`}>
@@ -124,7 +138,7 @@ export default function Home() {
       {/* Featured Products */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-14">
+          <div ref={featuredHeaderRef} className="flex items-end justify-between mb-14 reveal-fade-up">
             <div>
               <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">Handpicked</p>
               <h2 className="font-heading text-3xl md:text-4xl font-semibold text-dark">Featured Dresses</h2>
@@ -134,9 +148,11 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          <div ref={featuredGridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {featured.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <div key={product.id} data-reveal>
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
 
@@ -153,7 +169,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/70 to-dark" />
         </div>
         <div className="absolute inset-0 ethiopian-pattern" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-4">
+        <div ref={heritageRef} className="relative z-10 max-w-3xl mx-auto text-center px-4 reveal-fade-up">
           <p className="text-secondary uppercase tracking-[0.35em] text-xs font-medium mb-5">Our Heritage</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Every Stitch Tells <br className="hidden md:block" />a Story
@@ -170,14 +186,14 @@ export default function Home() {
 
       {/* Testimonials */}
       <section className="section-padding max-w-7xl mx-auto">
-        <div className="text-center mb-14">
+        <div ref={testimonialsHeaderRef} className="text-center mb-14 reveal-fade-up">
           <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">Love Notes</p>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-dark">What Our Customers Say</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div ref={testimonialsGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map(review => (
-            <div key={review.name} className="bg-white p-8 border border-warm-gray hover:border-secondary/30 transition-colors">
+            <div key={review.name} data-reveal className="bg-white p-8 border border-warm-gray hover:border-secondary/30 transition-colors">
               <div className="flex items-center gap-0.5 mb-5">
                 {[...Array(review.rating)].map((_, i) => (
                   <Star key={i} size={14} className="fill-secondary text-secondary" />
@@ -195,7 +211,7 @@ export default function Home() {
 
       {/* Social CTA */}
       <section className="bg-dark py-20">
-        <div className="max-w-4xl mx-auto text-center px-4">
+        <div ref={socialRef} className="max-w-4xl mx-auto text-center px-4 reveal-fade-up">
           <p className="text-secondary uppercase tracking-[0.25em] text-xs font-medium mb-3">Follow Us</p>
           <h2 className="font-heading text-3xl font-semibold text-white mb-4">@helen.sultan.9022</h2>
           <p className="text-white/40 mb-8 text-sm max-w-md mx-auto">
@@ -224,7 +240,7 @@ export default function Home() {
 
       {/* Newsletter */}
       <section className="section-padding bg-cream">
-        <div className="max-w-lg mx-auto text-center">
+        <div ref={newsletterRef} className="max-w-lg mx-auto text-center reveal-fade-up">
           <h2 className="font-heading text-2xl md:text-3xl font-semibold text-dark mb-3">Stay Connected</h2>
           <p className="text-text-muted text-sm mb-8">Get notified about new collections, exclusive offers, and cultural stories.</p>
           <form className="flex gap-2" onSubmit={e => e.preventDefault()}>
